@@ -570,6 +570,19 @@
         }
       }
 
+      function maybeDodgeTouch(touch) {
+        if (acceptedState) return false;
+        if (!touch) return false;
+
+        const d = distanceToNoButton(touch.clientX, touch.clientY);
+        const threshold = 140;
+        if (d < threshold) {
+          escapeNoButton('Touch detected. No is escaping.');
+          return true;
+        }
+        return false;
+      }
+
       function startHearts() {
         if (prefersReducedMotion) return;
 
@@ -769,6 +782,17 @@
 
       // If mouse gets near the No button, dodge
       stage.addEventListener('mousemove', maybeDodgeMouse);
+
+      // Mobile: dodge when a finger gets close (not only on touching the button)
+      stage.addEventListener('touchstart', (e) => {
+        const didDodge = maybeDodgeTouch(e.touches && e.touches[0]);
+        if (didDodge) e.preventDefault();
+      }, { passive: false });
+
+      stage.addEventListener('touchmove', (e) => {
+        const didDodge = maybeDodgeTouch(e.touches && e.touches[0]);
+        if (didDodge) e.preventDefault();
+      }, { passive: false });
 
       againBtn.addEventListener('click', resetAll);
 
