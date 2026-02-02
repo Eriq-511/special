@@ -420,9 +420,8 @@
 
         <div class="accepted" id="accepted">
           <h2>Yessss! 🥹</h2>
-          <p id="acceptedText">Edinah (“Evil”), you just made my whole day. Now I officially owe you a date, snacks, and nonstop compliments.</p>
+          <p id="acceptedText">Edinah (“Evil”), you just made my whole day. Now I officially owe you chocolate, love in terms of "D***" and nonstop compliments.</p>
           <div class="acceptedActions">
-            <button class="secondary" id="copyBtn" type="button">Copy cute message</button>
             <button class="secondary" id="againBtn" type="button">Replay the drama</button>
           </div>
         </div>
@@ -442,7 +441,6 @@
       const toast = document.getElementById('toast');
       const accepted = document.getElementById('accepted');
       const acceptedText = document.getElementById('acceptedText');
-      const copyBtn = document.getElementById('copyBtn');
       const againBtn = document.getElementById('againBtn');
       const hearts = document.getElementById('hearts');
       const confettiCanvas = document.getElementById('confetti');
@@ -517,6 +515,7 @@
 
         const lines = [
           'Nice try, Evil 😌',
+          'Oops',
           'Nope. That button has legs.',
           'The “No” is shy today.',
           'Not you chasing a button…',
@@ -526,6 +525,7 @@
         const extra = [
           'I only coded one outcome: us.',
           'Plot twist: you actually meant yes.',
+          'You know u want it',
           'Be honest… you were gonna click yes anyway.'
         ];
 
@@ -769,17 +769,6 @@
 
       // If mouse gets near the No button, dodge
       stage.addEventListener('mousemove', maybeDodgeMouse);
-
-      // Copy message
-      copyBtn.addEventListener('click', async () => {
-        const msg = "Edinah (\"Evil\"), will you be my Valentine? You already said yes, so it's official 😌💖";
-        try {
-          await navigator.clipboard.writeText(msg);
-          showToast('Copied. Now send it to Evil.');
-        } catch {
-          showToast('Could not copy (browser blocked it).');
-        }
-      });
 
       againBtn.addEventListener('click', resetAll);
 
